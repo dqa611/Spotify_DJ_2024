@@ -159,7 +159,7 @@ def plot_my_playlist(df: pd.DataFrame, plt_title: str = "Name not given") -> Non
         "brighten": rgb_to_hex((200, 16, 46)),
         "darken": rgb_to_hex((113, 178, 201)),
         "same": rgb_to_hex((173, 220, 145)),
-        "random from random track": rgb_to_hex((95, 37, 159)),
+        "random": rgb_to_hex((95, 37, 159)),
         "nearest neighbor index position": rgb_to_hex((21, 71, 52)),
         "word match score": rgb_to_hex((213, 120, 0)),
     }
@@ -193,7 +193,7 @@ def plot_my_playlist(df: pd.DataFrame, plt_title: str = "Name not given") -> Non
             -1: color_map["darken"],
             1: color_map["brighten"],
             0: color_map["same"],
-            -2: color_map["random from random track"],
+            -2: color_map["random"],
         }
         # Make the first bar color grey and the rest based on the mood
         bar_colors = [
