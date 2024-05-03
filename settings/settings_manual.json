@@ -8,7 +8,7 @@
                 "min_cap_score": 1,
                 "partial_score_multiplier": 0.5,
                 "percentile_ascending": false,
-                "return_percentile": 1,
+                "return_percentile": 0.5,
                 "split_str": "|",
                 "which_col": "artist_genres"
             }
@@ -111,9 +111,10 @@
                     "-1": "Goosebumps"
                 },
                 "mood_interpretation": {
-                    "0": "Same mood",
-                    "1": "Brighten mood",
-                    "-1": "Darken mood"
+                    "0": "Same",
+                    "1": "Brighten",
+                    "-1": "Darken",
+                    "-2": "Random"
                 }
             }
         },
@@ -132,7 +133,7 @@
                 ],
                 "nn_number_of_output": 10,
                 "percentile_ascending": true,
-                "return_percentile": 0.5
+                "return_percentile": 1
             }
         }
     },
@@ -153,11 +154,7 @@
             ]
         },
         "randomize": {
-            "applied": [
-                0.5,
-                0.2,
-                0.1
-            ],
+            "applied": 0,
             "options": {
                 "Optimal": 0,
                 "Random": 1,
@@ -170,10 +167,8 @@
         }
     },
     "import_from_spotify": false,
-    "export_to_csv": false,
-    "export_to_spotify": false,
+    "export_to_csv": true,
+    "export_to_spotify": true,
     "print_log": true,
-    "print_plot": true,
-    "print_msg": true,
-    "print_plt": false
+    "print_plot": true
 }

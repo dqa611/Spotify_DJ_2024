@@ -133,10 +133,12 @@ def sort_playlist(
         f"Playlist sorted successfully. Total duration: {round(total_duration)} minutes",
     )
 
-    sorted_playlist = df.merge(
+    sorted_playlist = sorted_playlist.drop(columns=df.columns.intersection(sorted_playlist.columns))
+
+    final_df = df.merge(
         sorted_playlist, how="inner", left_index=True, right_index=True
     ).sort_values("order")
 
-    sorted_playlist["cum_duration"] = sorted_playlist["duration_min"].cumsum()
+    final_df["cum_duration"] = final_df["duration_min"].cumsum()
 
-    return sorted_playlist
+    return final_df

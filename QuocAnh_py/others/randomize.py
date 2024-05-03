@@ -29,7 +29,6 @@ def randomize_index(
             raise ValueError("Invalid type detected")
 
     df = df[~df.index.isin(excluded)]
-    n = len(df)
 
     if type == 0:
         random_index = df.index[0]

@@ -111,9 +111,10 @@
                     "-1": "Goosebumps"
                 },
                 "mood_interpretation": {
-                    "0": "Same mood",
-                    "1": "Brighten mood",
-                    "-1": "Darken mood"
+                    "0": "Same",
+                    "1": "Brighten",
+                    "-1": "Darken",
+                    "-2": "Random"
                 }
             }
         },

@@ -103,7 +103,7 @@ def summary_stats_cols() -> list:
         + ["intersection"]
         + get_common_text_cols()
         + ["camelot_mvmt", "energy_mvmt", "mood_mvmt"]
-        + ["year_released", "track_popularity", "artist_popularity"]
+        + ["track_popularity", "artist_popularity"]
     )
     cols.remove("intersection")
     return cols

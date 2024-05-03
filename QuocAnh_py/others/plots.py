@@ -21,7 +21,8 @@ def corre_plot(
     input_index: Union[List[str], str, None] = None,
     title: str = "Pairplot & Histogram of the playlist",
     columns: Optional[List[str]] = None,
-):
+):  
+
     if columns is None:
         columns = sc.corr_plt_cols()
 
@@ -133,21 +134,32 @@ def plot_my_playlist(df: pd.DataFrame, plt_title: str = "Name not given") -> Non
     xs = df["cum_duration"]
 
     # Replace NaN with -2
-    color = df["mood_mvmt"].fillna(-2)
+    if settings['harmonic_keys']['applied']:
+        color = df["mood_mvmt"].fillna(-2)
+    else:
+        color = pd.Series([0]*len(df)) 
+    
     # Replace NaN with 0. Replace the input_track, which is by default 1000, to 0
-    line1 = df["word_match_score"].replace(default_input_index_score, 0).fillna(0)
+    if settings['common_text_score']['applied']:
+        line1 = df["word_match_score"].replace(default_input_index_score, 0).fillna(0)
+    else: 
+        line1 = pd.Series([0]*len(df))
+
     # Replace NaN with the max value + 1
-    replace_na_nn_index = int(max(df["nn_index_position"]) + 1)
-    # Flip the value so that the higher the values, the lower it shows in the line
-    line2 = -df["nn_index_position"].fillna(replace_na_nn_index)
+    if settings['nearest_neighbor']['applied']:
+        replace_na_nn_index = int(max(df["nn_index_position"]) + 1)
+        # Flip the value so that the higher the values, the lower it shows in the line
+        line2 = -df["nn_index_position"].fillna(replace_na_nn_index)
+    else:
+        line2 = pd.Series([0]*len(df))
 
     # https://254-online.com/colours-and-the-moods-they-invoke/
     color_map = {
         "first track": rgb_to_hex((4, 106, 56)),
-        "brighten mood": rgb_to_hex((200, 16, 46)),
-        "darken mood": rgb_to_hex((113, 178, 201)),
-        "same mood": rgb_to_hex((173, 220, 145)),
-        "random mood from random track": rgb_to_hex((95, 37, 159)),
+        "brighten": rgb_to_hex((200, 16, 46)),
+        "darken": rgb_to_hex((113, 178, 201)),
+        "same": rgb_to_hex((173, 220, 145)),
+        "random from random track": rgb_to_hex((95, 37, 159)),
         "nearest neighbor index position": rgb_to_hex((21, 71, 52)),
         "word match score": rgb_to_hex((213, 120, 0)),
     }
@@ -178,10 +190,10 @@ def plot_my_playlist(df: pd.DataFrame, plt_title: str = "Name not given") -> Non
         )
 
         color_map_mood = {
-            -1: color_map["darken mood"],
-            1: color_map["brighten mood"],
-            0: color_map["same mood"],
-            -2: color_map["random mood from random track"],
+            -1: color_map["darken"],
+            1: color_map["brighten"],
+            0: color_map["same"],
+            -2: color_map["random from random track"],
         }
         # Make the first bar color grey and the rest based on the mood
         bar_colors = [
