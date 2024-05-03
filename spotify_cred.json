@@ -2,7 +2,7 @@
     "USERNAME": "anhquocduong611",
     "USERNAME_ID": "1214868237",
     "CLIENT_ID": "fc1d1bccc9d7452d9d45bc4c9f0a0fcc",
-    "CLIENT_SECRET": "25b763b0b53a47eea3652286cc041a6e",
+    "CLIENT_SECRET": "",
     "REDIRECT_URI": "http://localhost:8888/",
     "SCOPE": "playlist-modify-private"
 }
